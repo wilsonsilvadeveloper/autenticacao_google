@@ -1,0 +1,8 @@
+{
+    "name": "wilson/testando-bd",
+    "require": {
+        "google/cloud": "^0.208.0",
+        "doctrine/dbal": "^3.6",
+        "firebase/php-jwt": "^6.7"
+    }
+}

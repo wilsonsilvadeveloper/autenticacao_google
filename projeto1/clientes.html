@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes</title>
+    <style>
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .form {
+        width: 100%;
+        text-align: center;
+      }
+
+      form {
+        margin: 20px 10px;
+        width: 30%;
+        margin: 20px auto;
+        min-width: 300px;
+      }
+
+      input {
+        width: 75%;
+        height: 30px;
+        font-size: 16px;
+        padding-left: 8px;
+        min-width: 150px;
+        margin-bottom: 5px;
+      }
+
+      form button {
+        width: 20%;
+        height: 30px;
+        display: inline-block;
+        min-width: 100px;
+      }
+
+      #divTable {
+        width: 100%;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 60%;
+        margin: auto;
+      }
+
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+      }
+
+      .remove {
+        display: none;
+      }
+
+      .add {
+        display: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lista de Clientes</h1>
+
+    <div class="form">
+      <form>
+        <input type="text" name="alvo" id="alvo" placeholder="Procurar cliente">
+        <button type="button" onclick="executaConsulta()">Procurar</button>
+      </form>
+    </div>
+    
+
+    <div id="divTable">
+      <table id="tabelaClientes">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Os dados do cliente serão preenchidos dinamicamente aqui -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      function getClientesJson() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const clientesJson = urlParams.get("clientesJson");
+        return JSON.parse(clientesJson);
+      }
+
+      function recebeClientes() {
+        const clientes = getClientesJson();
+
+        const tabelaClientes = document.getElementById("tabelaClientes");
+        const tbody = tabelaClientes.getElementsByTagName("tbody")[0];
+
+        clientes.forEach((cliente) => {
+          const { nome, email, telefone } = cliente;
+
+          const row = document.createElement("tr");
+          row.setAttribute('class', 'linha');
+
+          const nomeCell = document.createElement("td");
+          nomeCell.setAttribute('id', 'nome');
+          nomeCell.textContent = nome;
+          row.appendChild(nomeCell);
+
+          const emailCell = document.createElement("td");
+          emailCell.textContent = email;
+          row.appendChild(emailCell);
+
+          const telefoneCell = document.createElement("td");
+          if (telefone !== null && telefone.length > 0) {
+            telefoneCell.textContent = telefone;
+          } else {
+            telefoneCell.textContent = "não tem";
+          }
+          row.appendChild(telefoneCell);
+
+          tbody.appendChild(row);
+        });
+      }
+
+      recebeClientes();
+    </script>
+
+    <script src="./js/consulta_cliente.js"></script>
+  </body>
+</html>

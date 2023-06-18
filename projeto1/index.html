@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>google login</title>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+      let respostaServidor;
+      function handleCredentialResponse(response) {
+        const data = jwt_decode(response.credential);
+        //console.log(data);
+
+        // Define os cookies com as informações do usuário
+        document.cookie = `user_name=${data.name}; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/`;
+        document.cookie = `user_email=${data.email}; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/`;
+        document.cookie = `user_sub=${data.sub}; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/`;
+
+        criaForm(data.name, data.email, data.sub);
+      }
+
+      function botaoGoogle() {
+        google.accounts.id.initialize({
+          client_id:
+            "965996172456-j3trvil67bkghr8ml3l9l9a75g2lk99t.apps.googleusercontent.com",
+          callback: handleCredentialResponse,
+        });
+
+        google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
+          theme: "outline",
+          size: "large",
+        });
+
+        google.accounts.id.prompt();
+      }
+
+      window.onload = function () {
+        // Verifica se há cookies de usuário salvos
+        const userName = getCookie("user_name");
+        const userEmail = getCookie("user_email");
+        const userSub = getCookie("user_sub");
+
+        if (userName && userEmail && userSub) {
+          // Restaure as informações de login do usuário no sistema
+          // Usando os dados nos cookies
+          criaForm(userName, userEmail, userSub);
+        } else {
+          botaoGoogle();
+        }
+      };
+
+      function getCookie(name) {
+        const cookies = document.cookie.split(";");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          if (cookie.startsWith(name + "=")) {
+            return cookie.substring(name.length + 1, cookie.length);
+          }
+        }
+        return null;
+      }
+
+      function criaForm(nome, email, sub) {
+        var div = document.querySelector("#divForm");
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action",'index.php');
+        form.setAttribute("id", "meuForm");
+
+        var inputNome = document.createElement("input");
+        inputNome.setAttribute("type", "text");
+        inputNome.setAttribute("name", "nome");
+        inputNome.value = nome;
+
+        var inputEmail = document.createElement("input");
+        inputEmail.setAttribute("type", "hidden");
+        inputEmail.setAttribute("name", "email");
+        inputEmail.value = email;
+
+        var inputSub = document.createElement("input");
+        inputSub.setAttribute("type", "hidden");
+        inputSub.setAttribute("name", "sub");
+        inputSub.value = sub;
+
+        var botao = document.createElement("button");
+        botao.setAttribute("type", "submit");
+        botao.textContent = "Enviar";
+
+        form.appendChild(inputNome);
+        form.appendChild(inputEmail);
+        form.appendChild(inputSub);
+        form.appendChild(botao);
+        div.appendChild(form);
+
+        // Aguarda o envio do formulário
+      }
+
+      function trocarConta() {
+        botaoGoogle();
+        var formExiste = document.querySelector("form");
+        formExiste.remove();
+      }
+    </script>
+  </head>
+  <body>
+    <div id="buttonDiv"></div>
+
+    <!--<p id="fullName"></p>
+    <p id="sub"></p>
+    <p id="given_name"></p>
+    <p id="family_name"></p>
+    <p id="email"></p>
+    <p id="verifiedEmail"></p>
+    <img id="picture" /> !-->
+
+    <div id="divForm"></div>
+
+    <button onclick="trocarConta()">Trocar</button>
+  </body>
+</html>
