@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tela incial</title>
+    <link rel="stylesheet" href="../css/tela_inicial.css" />
+  </head>
+  <body>
+    <header>
+      <div class="botao-menu">
+        <button onclick="abriSidebar()">
+          <img src="../img/opcoes.png" alt="botao menu" />
+        </button>
+      </div>
+      <h1 id="h1-header">Area do Usuario</h1>
+    </header>
+
+    <main>
+      <section class="container">
+        <section class="sidebar">
+          <button onclick="fecharSidebar()">X</button>
+          <nav class="menu">
+            <ol>
+              <li>
+                <a href="#" id="perfil" onclick="abrirTela('perfil')"
+                  ><img src="../img/usuario-de-perfil.png" alt="" />
+                  <p>Perfil</p></a
+                >
+                <hr />
+              </li>
+              <li>
+                <a href="#" id="cliente" onclick="abrirTela('cliente')"
+                  ><img src="../img/cliente.png" alt="" />
+                  <p>Cliente</p></a
+                >
+                <hr />
+              </li>
+              <li>
+                <a href="#" id="funcionarios" onclick="abrirTela('funcionarios')"
+                  ><img src="../img/funcionarios.png" alt="" />
+                  <p>Funcionarios</p></a
+                >
+                <hr />
+              </li>
+              <li>
+                <a href="#" id="configs" onclick="abrirTela('configs')"
+                  ><img src="../img/config.png" alt="" />
+                  <p>Configurações</p></a
+                >
+              </li>
+            </ol>
+          </nav>
+        </section>
+
+        <section class="container-info" id="conteudo">
+          <!--
+          <section class="tela-cliente">
+            <iframe src="http://localhost/projeto1/html/sub_tela/tabela_cliente/cliente.html" frameborder="0"></iframe>
+          </section>"-->
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
+
+<script src="../js/tela_inicial.js"></script>

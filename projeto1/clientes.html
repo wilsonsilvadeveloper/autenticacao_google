@@ -74,9 +74,26 @@
       .add {
         display: 0;
       }
+
+      .red {
+        background-color: red;
+        color: white;
+      }
+
+      #logoutButton {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+
+      #logoutButton img {
+        width: 26px;
+      }
     </style>
   </head>
   <body>
+    <button id="logoutButton"><img src="./img/sair.png" alt=""></button>
     <h1>Lista de Clientes</h1>
 
     <div class="form">
@@ -101,50 +118,8 @@
         </tbody>
       </table>
     </div>
-
-    <script>
-      function getClientesJson() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const clientesJson = urlParams.get("clientesJson");
-        return JSON.parse(clientesJson);
-      }
-
-      function recebeClientes() {
-        const clientes = getClientesJson();
-
-        const tabelaClientes = document.getElementById("tabelaClientes");
-        const tbody = tabelaClientes.getElementsByTagName("tbody")[0];
-
-        clientes.forEach((cliente) => {
-          const { nome, email, telefone } = cliente;
-
-          const row = document.createElement("tr");
-          row.setAttribute('class', 'linha');
-
-          const nomeCell = document.createElement("td");
-          nomeCell.setAttribute('id', 'nome');
-          nomeCell.textContent = nome;
-          row.appendChild(nomeCell);
-
-          const emailCell = document.createElement("td");
-          emailCell.textContent = email;
-          row.appendChild(emailCell);
-
-          const telefoneCell = document.createElement("td");
-          if (telefone !== null && telefone.length > 0) {
-            telefoneCell.textContent = telefone;
-          } else {
-            telefoneCell.textContent = "não tem";
-          }
-          row.appendChild(telefoneCell);
-
-          tbody.appendChild(row);
-        });
-      }
-
-      recebeClientes();
-    </script>
-
+    <script src="./js/tabela_clientes.js"></script>
+    <script src="./js/resgata_info.js"></script>
     <script src="./js/consulta_cliente.js"></script>
   </body>
 </html>

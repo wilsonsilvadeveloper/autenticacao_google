@@ -8,6 +8,8 @@ function executaConsulta() {
   let input = document.querySelector("#alvo");
 
   let trs = procuraTr();
+  console.log(trs);
+  console.log(input.value);
 
   trs.forEach(function (tr) {
     let nome = tr.querySelector("#nome").textContent;

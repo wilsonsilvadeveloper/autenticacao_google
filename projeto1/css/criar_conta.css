@@ -1,0 +1,23 @@
+#form fieldset{
+    padding: 0 20px;
+}
+
+.container-inputs {
+    display: flex;
+    justify-content: left;
+    flex-direction: column  ;
+}
+
+label {
+    display: block !important;
+    text-align: left !important;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100% !important;
+}
+
+button[type="submit"] {
+    margin-bottom: 20px;
+}

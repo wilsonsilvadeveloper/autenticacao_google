@@ -1,0 +1,98 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+#form {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+    text-align: center;
+    color: blue;
+}
+
+#form legend {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#form .container-inputs {
+    margin-top: 14px;
+}
+
+#form .container-inputs:nth-of-type(1) {
+    margin-top: 60px;
+}
+
+#form .label {
+    color: blue;
+}
+
+.input {
+    width: 60%;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 5px;
+    outline: none;
+    color: blue;
+}
+
+button[type="submit"] {
+    margin-top: 20px;
+    width: 200px;
+    height: 25px;
+    background-color: rgb(38, 38, 217);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#form p {
+    margin-top: 20px;
+}
+
+#form hr {
+    width: 95%;
+    background-color: black;
+    height: 1px;
+    position: relative;
+    left: 50%;
+    margin-top: 20px;
+    transform: translateX(-50%);
+}
+
+#form #buttonDiv {
+    margin: 25px 0;
+    display: inline-block;
+}
+
+span#alerta {
+    color: red;
+    display: block ;
+    margin-top: 20px;
+}
+
+a {
+    display: block;
+    margin-bottom: 10px;
+}

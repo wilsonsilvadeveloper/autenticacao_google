@@ -1,63 +1,54 @@
 <?php
 
-require 'vendor/autoload.php';
+use GPBMetadata\Google\Cloud\Recommendationengine\V1Beta1\Import;
 
-use Firebase\JWT\JWT;
+require 'vendor/autoload.php';
 use Doctrine\DBAL\DriverManager;
 
 // Configurações do banco de dados
 $connectionParams = [
-    'dbname' => 'sistemaControleClientes',
-    'user' => 'postgres',
-    'password' => 'developer001',
-    'host' => '35.184.153.207',
+    'dbname' => 'postgres',
+    'user' => 'wilson',
+    'password' => 'developer',
+    'host' => 'localhost',
     'driver' => 'pdo_pgsql',
 ];
 
 try {
-    // Estabelece a conexão com o banco de dados
     $conn = DriverManager::getConnection($connectionParams);
-
-    // Exibe uma mensagem de conexão bem-sucedida
     //echo "Conexão bem-sucedida com o banco de dados!" . "<br>" . PHP_EOL;
 
-    // Verifica se há dados do usuário do Google disponíveis
-    if (isset($_POST['nome']) && isset($_POST['email']) && isset($_POST['sub'])) {
-        $nome = $_POST['nome'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Receber os dados do formulário
         $email = $_POST['email'];
-        $sub = $_POST['sub'];
+        $senha = $_POST['senha'];
 
-        // Verifica se o usuário já existe no banco de dados
-        $sql = "SELECT * FROM usuarios WHERE id = ?";
-        $stmt = $conn->executeQuery($sql, [$sub]);
-        $user = $stmt->fetchAllAssociative();
+        // Exibir os dados na tela
 
-        if ($user) {
-            $sql = "SELECT * FROM clientes WHERE usuario_id = ?";
-            $stmt = $conn->executeQuery($sql, [$sub]);
-            $clientes = $stmt->fetchAllAssociative();
+        $sql = "SELECT * FROM usuario WHERE email = ?";
+        $stmt = $conn->executeQuery($sql, [$email]);
+        $result = $stmt->fetchAssociative();
 
-            if ($clientes) {
-                //$clientesJson = json_encode($clientes);
-                //header('Content-Type: application/json');
-                //echo $clientesJson;
-
-                $clientesJson = json_encode($clientes);
-                header("Location: clientes.html?clientesJson=" . urlencode($clientesJson));
-                exit();
-            } else {
-                echo 'nenhum cliente encontrado';
-            }
-
-            // Redirecionamento para clientes.html
-
+        if ($result) {
+            // usuario encontrado
+            $response = [
+                'encontrado' => true,
+                'dados' => $result
+            ];
         } else {
-            echo "Usuário inserido com sucesso!";
+            // usuario não encontrado
+            $response = [
+                'encontrado' => false
+            ];
         }
-    } else {
-        echo "Nenhum dado do usuário do Google recebido.";
+        
+        // Enviar a resposta em formato JSON
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
+
+    //header("Location: ./clientes.html");
+    //exit();
 } catch (Exception $e) {
-    //Exibe uma mensagem de erro caso ocorra uma exceção
     echo "Erro ao conectar ao banco de dados: " . $e->getMessage() . PHP_EOL;
 }

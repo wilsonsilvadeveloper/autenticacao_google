@@ -1,0 +1,146 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+header {
+  height: 100px;
+  width: 100%;
+  background-color: blueviolet;
+}
+
+main {
+  height: calc(100% - 100px);
+}
+
+.botao-menu {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+
+.botao-menu button {
+  background-color: rgb(89, 37, 137);
+}
+
+.botao-menu img {
+  width: 30px;
+  cursor: pointer;
+}
+
+#h1-header {
+  text-align: center;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.sidebar {
+  transform: translateX(-200px);
+  width: 200px;
+  height: 100%;
+  background-color: blueviolet;
+  overflow: hidden;
+}
+
+.abrirSidebar {
+  animation: abriSidebar 1s normal 500ms both;
+}
+
+.fecharSidebar {
+  animation: fecharSidebar 1s normal 500ms both;
+}
+
+@keyframes abriSidebar {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fecharSidebar {
+  0% {
+    width: 200px;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200px);
+    width: 0;
+  }
+}
+
+.sidebar > .menu {
+  position: relative;
+  top: 70px;
+  width: 100%;
+}
+
+.sidebar > button {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  left: 8px;
+  top: 8px;
+  color: white;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar li {
+  list-style: none;
+}
+
+.sidebar > .menu > ol > li a {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar > .menu > ol > li:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.sidebar hr {
+  height: 1px;
+  border: 1px solid black;
+}
+
+.sidebar > .menu > ol > li > a > p {
+  margin-left: 10px;
+}
+
+.sidebar > .menu > ol > li > a > img {
+  width: 30px;
+}
+
+.container-info {
+  width: 100%;
+}
+
+.tela-cliente {
+  height: 100%;
+}
+
+iframe {
+  width: 100%;
+  height: calc(100% - 30px);
+}
