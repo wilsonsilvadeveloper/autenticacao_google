@@ -31,7 +31,7 @@ try {
 
         $sql = "SELECT * FROM cliente WHERE usuario_id = ?";
         $stmt = $conn->executeQuery($sql, [$id]);
-        $result = $stmt->fetchAssociative();
+        $result = $stmt->fetchAllAssociative();
 
         if($result) {
             $response = [

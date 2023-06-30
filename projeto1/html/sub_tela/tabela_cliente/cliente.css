@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family= Inter:wght@200;300 & display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -86,6 +86,9 @@ h1 {
 #tabelaClientes td {
   border: 1px solid black;
   text-align: center;
+  height: 32px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .error {
@@ -108,4 +111,145 @@ h1 {
   margin-top: 25px;
   font-size: 25px;
   color: red;
+}
+
+#sessionAdicionar {
+  position: absolute;
+  top: 80px;
+  left: 40px;
+  transform: translateX(-50%);
+}
+
+#sessionAdicionar button {
+  background-color: transparent;
+}
+
+#sessionAdicionar button img {
+  width: 40px;
+  transition: 1s;
+  cursor: pointer;
+}
+
+#modal {
+  position: absolute;
+  top: -2000px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.abrirModal {
+  animation: abre 1s linear 500ms 1 both;
+}
+
+.fecharModal{
+  animation: fecha 1s linear 500ms 1 both;
+}
+
+@keyframes abre {
+  0% {
+    top: -2000px;
+  } 100% {
+    top: 0;
+  }
+}
+
+@keyframes fecha {
+  0% {
+    top: 0;
+  } 100% {
+    top: -2000px;
+  }
+}
+#fechaModal {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: transparent;
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#modalAdicionaCliente {
+  width: 60%;
+  height: auto;
+  padding: 20px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: rgb(57, 0, 148);
+  border-radius: 1rem;
+  color: white;
+}
+
+#modalAdicionaCliente form {
+  width: 100%;
+}
+
+#modalAdicionaCliente form legend {
+  font-size: 1.8rem;
+  color: white;
+  margin: 20px 0;
+  text-align: center;
+}
+
+#modalAdicionaCliente form .container-inputs {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#modalAdicionaCliente form .container-inputs input {
+  width: 100%;
+  height: 26px;
+  font-size: 20px;
+  padding-left: 8px;
+}
+
+#modalAdicionaCliente form button#cadastrar {
+  width: 200px;
+  height: 28px;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  background-color: blueviolet;
+  color: white;
+  font-size: 18px;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+#modalAdicionaCliente form button#cadastrar:hover {
+  transition: 1s;
+  background-color: rgb(115, 24, 201);
+}
+
+#modalAdicionaCliente span {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: red;
+}
+
+.remove {
+  display: none;
+}
+
+.add {
+  display: 0;
+}
+
+.red {
+  background-color: red;
+  color: white;
 }

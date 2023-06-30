@@ -85,7 +85,7 @@ main {
 
 .sidebar > .menu {
   position: relative;
-  top: 70px;
+  top: 24px;
   width: 100%;
 }
 
@@ -109,7 +109,7 @@ main {
 .sidebar > .menu > ol > li a {
   display: flex;
   align-items: center;
-  padding: 20px 0;
+  padding: 15px 0;
   margin-left: 20px;
   color: white;
   text-decoration: none;
@@ -142,5 +142,5 @@ main {
 
 iframe {
   width: 100%;
-  height: calc(100% - 30px);
+  height: calc(100% - 10px);
 }

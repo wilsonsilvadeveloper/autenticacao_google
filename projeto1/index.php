@@ -3,6 +3,7 @@
 use GPBMetadata\Google\Cloud\Recommendationengine\V1Beta1\Import;
 
 require 'vendor/autoload.php';
+
 use Doctrine\DBAL\DriverManager;
 
 // Configurações do banco de dados
@@ -31,6 +32,38 @@ try {
 
         if ($result) {
             // usuario encontrado
+            if (isset($_COOKIE['usuario'])) {
+                $cookieValue = $_COOKIE['usuario'];
+                $cookieExpiration = time() - (60 * 60 * 24 * 30); // 30 dias
+                setcookie('usuario', '', $cookieExpiration); // Define o tempo de expiração para uma hora atrás
+
+                $data = array(
+                    'nome' =>   $result['nome'],
+                    'email' => $result['email'],
+                    'token' => $result['token_auth'],
+                );
+
+                $jsonData = json_encode($data);
+
+                $cookieName = "usuario";
+                $cookieExpiration = time() + (60 * 60 * 24 * 30); // 30 dias
+                $cookieDomain = "localhost";
+                setcookie($cookieName, $jsonData, $cookieExpiration, "/", $cookieDomain);
+            } else {
+
+                $data = array(
+                    'nome' =>   $result['nome'],
+                    'email' => $result['email'],
+                    'token' => $result['token_auth'],
+                );
+
+                $jsonData = json_encode($data);
+
+                $cookieName = "usuario";
+                $cookieExpiration = time() + (60 * 60 * 24 * 30); // 30 dias
+                $cookieDomain = "localhost";
+                setcookie($cookieName, $jsonData, $cookieExpiration, "/", $cookieDomain);
+            }
             $response = [
                 'encontrado' => true,
                 'dados' => $result
@@ -41,7 +74,7 @@ try {
                 'encontrado' => false
             ];
         }
-        
+
         // Enviar a resposta em formato JSON
         header('Content-Type: application/json');
         echo json_encode($response);
