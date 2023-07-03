@@ -1,28 +1,4 @@
 let respostaServidor;
-function handleCredentialResponse(response) {
-  const data = jwt_decode(response.credential);
-  console.log(data);
-  enviarDadosFormulario(data.email);
-}
-
-function botaoGoogle() {
-  google.accounts.id.initialize({
-    client_id:
-      "965996172456-j3trvil67bkghr8ml3l9l9a75g2lk99t.apps.googleusercontent.com",
-    callback: handleCredentialResponse,
-  });
-
-  google.accounts.id.renderButton(document.getElementById("buttonDiv"), {
-    theme: "outline",
-    size: "large",
-  });
-
-  google.accounts.id.prompt();
-}
-
-window.onload = function () {
-  botaoGoogle();
-};
 
 // Função para enviar os dados do formulário
 function enviarDadosFormulario(email, senha) {

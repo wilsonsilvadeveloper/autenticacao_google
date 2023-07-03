@@ -53,6 +53,7 @@ main {
   height: 100%;
   background-color: blueviolet;
   overflow: hidden;
+  z-index: 1;
 }
 
 .abrirSidebar {
@@ -133,7 +134,9 @@ main {
 }
 
 .container-info {
+  position: absolute;
   width: 100%;
+  z-index: 0;
 }
 
 .tela-cliente {
@@ -143,4 +146,50 @@ main {
 iframe {
   width: 100%;
   height: calc(100% - 10px);
+}
+
+.container-info > .painel {
+  padding: 20px;
+  display: block;
+  text-align: center;
+}
+
+.disablePainel {
+  display: none;
+}
+
+.container-info > .painel > div {
+  width: 50%;
+  height: 180px;
+  min-width: 300px;
+  max-width: 500px;
+  border: 1px solid black;
+  border-radius: 1rem;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  transition: 800ms;
+  margin: 30px;
+}
+
+.container-info > .painel > div > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-info > .painel > div:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container-info > .painel  img {
+  width: 80px;
+}
+
+.container-info > .painel p {
+  font-size: 1.4rem;
+  font-family: Arial, Helvetica, sans-serif;
 }

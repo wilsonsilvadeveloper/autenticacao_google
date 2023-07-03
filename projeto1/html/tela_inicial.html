@@ -23,7 +23,10 @@
           <nav class="menu">
             <ol>
               <li>
-                <a href="#" id="inicio" onclick="abrirTela('inicio')"
+                <a
+                  href="#"
+                  id="painel"
+                  onclick="abrirTela('painel')"
                   ><img src="../img/inicio.png" alt="" />
                   <p>Inicio</p></a
                 >
@@ -37,7 +40,10 @@
                 <hr />
               </li>
               <li>
-                <a href="#" id="cliente" onclick="abrirTela('cliente')"
+                <a
+                  href="#"
+                  id="cliente"
+                  onclick="abrirTela('cliente', 'tabela_cliente')"
                   ><img src="../img/cliente.png" alt="" />
                   <p>Cliente</p></a
                 >
@@ -51,14 +57,17 @@
                 <hr />
               </li>
               <li>
-                <a href="#" id="vendas" onclick="abrirTela('vendas')"
+                <a href="#" id="vendas" onclick="abrirTela('venda')"
                   ><img src="../img/vendas.png" alt="" />
                   <p>Vendas</p></a
                 >
                 <hr />
               </li>
               <li>
-                <a href="#" id="funcionarios" onclick="abrirTela('funcionarios')"
+                <a
+                  href="#"
+                  id="funcionarios"
+                  onclick="abrirTela('funcionarios')"
                   ><img src="../img/funcionarios.png" alt="" />
                   <p>Funcionarios</p></a
                 >
@@ -75,10 +84,49 @@
         </section>
 
         <section class="container-info" id="conteudo">
-          <!--
-          <section class="tela-cliente">
-            <iframe src="http://localhost/projeto1/html/sub_tela/tabela_cliente/cliente.html" frameborder="0"></iframe>
-          </section>"-->
+          <section class="painel">
+            <div> 
+              <div>
+                <img src="../img/adicionar-venda.png" alt="" />
+                <p>Nova Venda</p>
+              </div>
+            </div> <!--Div adicionar vendas-->
+
+            <div>
+              <div>
+                <img src="../img/vendas1.png" alt="" />
+                <p>Vendas</p>
+              </div>
+            </div> <!--Div adicionar cliente-->
+
+            <div>
+              <div>
+                <img src="../img/adicionar-usuario (1).png" alt="" />
+                <p>Novo Cliente</p>
+              </div>
+            </div> <!--Div adicionar cliente-->
+
+            <div>
+              <div>
+                <img src="../img/cliente1.png" alt="" />
+                <p>Consultar Cliente</p>
+              </div>
+            </div> <!--Div consultar cliente-->
+
+            <div>
+              <div>
+                <img src="../img/adicionar-produto.png" alt="" />
+                <p>Novo Produto</p>
+              </div>
+            </div> <!--Div adicionar Produto cliente-->
+
+            <div>
+              <div>
+                <img src="../img/produtos-lista.png" alt="" />
+                <p>Consultar Produtos</p>
+              </div>
+            </div> <!--Div consultar produto-->
+          </section>
         </section>
       </section>
     </main>
